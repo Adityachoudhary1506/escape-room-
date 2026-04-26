@@ -351,7 +351,7 @@ const Room3 = () => {
       
       try {
         const token = sessionStorage.getItem('token');
-        const res = await axios.post("http://localhost:5000/api/game/start-room3", {}, {
+        const res = await axios.post("https://escape-room-vgd1.onrender.com/api/game/start-room3", {}, {
           headers: { Authorization: `Bearer ${token}` }
         });
 
@@ -393,7 +393,7 @@ const Room3 = () => {
     if (timeLeft <= 0) {
       setGameOver(true);
       const token = sessionStorage.getItem('token');
-      axios.post("http://localhost:5000/api/game/fail-room", { roomNumber: 3 }, {
+      axios.post("https://escape-room-vgd1.onrender.com/api/game/fail-room", { roomNumber: 3 }, {
         headers: { Authorization: `Bearer ${token}` }
       }).then(() => {
         localStorage.removeItem("r3_qIndex");
@@ -460,7 +460,7 @@ const Room3 = () => {
       setMessage({ text: "ACCESS GRANTED. MATRIX DEFEATED.", type: "success" });
       try {
         await axios.post(
-          "http://localhost:5000/api/game/complete-room3",
+          "https://escape-room-vgd1.onrender.com/api/game/complete-room3",
           {},
           {
             headers: {

@@ -36,7 +36,7 @@ const AdminDashboard = () => {
   const fetchRoom2Leaderboard = async () => {
     try {
       const token = sessionStorage.getItem('token');
-      const res = await axios.get("http://localhost:5000/api/admin/room2-leaderboard", {
+      const res = await axios.get("https://escape-room-vgd1.onrender.com/api/admin/room2-leaderboard", {
         headers: { Authorization: `Bearer ${token}` }
       });
       console.log("Room2 Data:", res.data);
@@ -58,7 +58,7 @@ const AdminDashboard = () => {
   const fetchFull = async () => {
     try {
       const token = sessionStorage.getItem('token');
-      const res = await axios.get("http://localhost:5000/api/admin/full-progress", {
+      const res = await axios.get("https://escape-room-vgd1.onrender.com/api/admin/full-progress", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFullData(res.data);
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
   const fetchFinal = async () => {
     try {
       const token = sessionStorage.getItem('token');
-      const res = await axios.get("http://localhost:5000/api/admin/final-leaderboard", {
+      const res = await axios.get("https://escape-room-vgd1.onrender.com/api/admin/final-leaderboard", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFinalData(res.data);
@@ -143,7 +143,7 @@ const AdminDashboard = () => {
                 if (window.confirm(`Are you sure you want to unlock Room ${room} globally?`)) {
                   try {
                     const token = sessionStorage.getItem('token');
-                    await axios.post("http://localhost:5000/api/admin/start-room", 
+                    await axios.post("https://escape-room-vgd1.onrender.com/api/admin/start-room", 
                       { roomNumber: room },
                       { headers: { Authorization: `Bearer ${token}` } }
                     );

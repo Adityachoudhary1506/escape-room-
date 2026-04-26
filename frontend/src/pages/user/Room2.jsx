@@ -654,7 +654,7 @@ const Room2 = () => {
     const initRoom = async () => {
       try {
         const token = sessionStorage.getItem('token');
-        const res = await axios.post("http://localhost:5000/api/game/start-room2", {}, {
+        const res = await axios.post("https://escape-room-vgd1.onrender.com/api/game/start-room2", {}, {
           headers: { Authorization: `Bearer ${token}` }
         });
         
@@ -698,7 +698,7 @@ const Room2 = () => {
     if (timeLeft <= 0) {
       setGameOver(true);
       const token = sessionStorage.getItem('token');
-      axios.post("http://localhost:5000/api/game/fail-room", { roomNumber: 2 }, {
+      axios.post("https://escape-room-vgd1.onrender.com/api/game/fail-room", { roomNumber: 2 }, {
         headers: { Authorization: `Bearer ${token}` }
       }).catch(err => console.error("Fail Sync Error:", err));
       return;
@@ -730,7 +730,7 @@ const Room2 = () => {
     setTimeLeft(600); // Start 10 mins explicitly
     try {
       const token = sessionStorage.getItem('token');
-      await axios.post("http://localhost:5000/api/game/start-room2", {}, {
+      await axios.post("https://escape-room-vgd1.onrender.com/api/game/start-room2", {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
     } catch (err) {
@@ -775,7 +775,7 @@ const Room2 = () => {
       setMessage({ text: "ROOM ESCAPED", type: "success" });
       try {
         await axios.post(
-          "http://localhost:5000/api/game/complete-room2",
+          "https://escape-room-vgd1.onrender.com/api/game/complete-room2",
           {
             door: doorMode
           },
