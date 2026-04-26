@@ -620,7 +620,7 @@ const Room2 = () => {
   const navigate = useNavigate();
 
   // Root States
-  const [doorMode, setDoorMode] = useState(() => localStorage.getItem("r2_doorMode") || null);
+  const [doorMode, setDoorMode] = useState(null);
   const [timeLeft, setTimeLeft] = useState(600);
   const [gameOver, setGameOver] = useState(false);
   const [roomUnlocked, setRoomUnlocked] = useState(false);
@@ -650,6 +650,23 @@ const Room2 = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   // ─── INITIALIZATION ────────────────────────────────────────────────────────
+  useEffect(() => {
+    const isFreshEntry = sessionStorage.getItem("room2Fresh");
+
+    if (!isFreshEntry) {
+      localStorage.removeItem("room2Door");
+      sessionStorage.setItem("room2Fresh", "true");
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedDoor = localStorage.getItem("room2Door");
+    const savedProgress = localStorage.getItem("r2_qIndex");
+
+    if (savedDoor && savedProgress) {
+      setDoorMode(savedDoor);
+    }
+  }, []);
   useEffect(() => {
     const initRoom = async () => {
       try {
@@ -727,6 +744,7 @@ const Room2 = () => {
 
   const handleDoorSelect = async (mode) => {
     setDoorMode(mode);
+    localStorage.setItem("room2Door", mode);
     setTimeLeft(600); // Start 10 mins explicitly
     try {
       const token = sessionStorage.getItem('token');
