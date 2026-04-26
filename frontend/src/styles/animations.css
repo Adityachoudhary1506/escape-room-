@@ -1,0 +1,76 @@
+/* Glitch, Fade in, Shaking animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px rgba(0, 255, 204, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(0, 255, 204, 0.5); }
+  100% { box-shadow: 0 0 10px rgba(0, 255, 204, 0.2); }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.shake-error {
+  animation: shake 0.4s ease-in-out;
+  border-color: var(--danger-color) !important;
+  box-shadow: var(--danger-glow) !important;
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s infinite;
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before, .glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -2px 0 red;
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -2px 0 blue;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(74px, 9999px, 86px, 0); }
+  10% { clip: rect(100px, 9999px, 14px, 0); }
+  20% { clip: rect(10px, 9999px, 89px, 0); }
+  30% { clip: rect(51px, 9999px, 5px, 0); }
+  40% { clip: rect(66px, 9999px, 96px, 0); }
+  50% { clip: rect(3px, 9999px, 60px, 0); }
+  60% { clip: rect(86px, 9999px, 20px, 0); }
+  70% { clip: rect(29px, 9999px, 10px, 0); }
+  80% { clip: rect(74px, 9999px, 78px, 0); }
+  90% { clip: rect(4px, 9999px, 3px, 0); }
+  100% { clip: rect(1px, 9999px, 62px, 0); }
+}
